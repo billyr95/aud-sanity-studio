@@ -1,0 +1,617 @@
+[
+  {
+    "fields": [
+      {
+        "name": "public_id",
+        "type": "string"
+      },
+      {
+        "name": "resource_type",
+        "type": "string"
+      },
+      {
+        "name": "type",
+        "type": "string"
+      },
+      {
+        "name": "format",
+        "type": "string"
+      },
+      {
+        "name": "version",
+        "type": "number"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "url",
+        "type": "url"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "secure_url",
+        "type": "url"
+      },
+      {
+        "name": "width",
+        "type": "number"
+      },
+      {
+        "name": "height",
+        "type": "number"
+      },
+      {
+        "name": "bytes",
+        "type": "number"
+      },
+      {
+        "name": "duration",
+        "type": "number"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "tags",
+        "type": "array"
+      },
+      {
+        "name": "created_at",
+        "type": "datetime"
+      },
+      {
+        "of": [
+          {
+            "type": "cloudinary.assetDerived",
+            "name": "derived",
+            "title": "Cloudinary Asset Derived"
+          }
+        ],
+        "name": "derived",
+        "type": "array"
+      },
+      {
+        "name": "access_mode",
+        "type": "string"
+      },
+      {
+        "name": "context",
+        "type": "cloudinary.assetContext"
+      }
+    ],
+    "name": "cloudinary.asset",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "name": "raw_transformation",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "url",
+        "type": "url"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "secure_url",
+        "type": "url"
+      }
+    ],
+    "name": "cloudinary.assetDerived",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "name": "custom",
+        "type": "cloudinary.assetContextCustom"
+      }
+    ],
+    "name": "cloudinary.assetContext",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "name": "alt",
+        "type": "string"
+      },
+      {
+        "name": "caption",
+        "type": "string"
+      }
+    ],
+    "name": "cloudinary.assetContextCustom",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "name": "client",
+        "type": "string"
+      },
+      {
+        "description": "e.g., Commercial Production, Event Coverage, etc.",
+        "name": "projectType",
+        "type": "string"
+      },
+      {
+        "name": "year",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Horizontal",
+              "value": "horizontal"
+            },
+            {
+              "title": "Vertical",
+              "value": "vertical"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "horizontal",
+        "name": "layout",
+        "type": "string"
+      },
+      {
+        "description": "Main hero video (click to browse Cloudinary)",
+        "name": "heroVideo",
+        "type": "cloudinary.asset"
+      },
+      {
+        "description": "For vertical layout - multiple hero videos",
+        "of": [
+          {
+            "type": "cloudinary.asset"
+          }
+        ],
+        "name": "heroVideos",
+        "type": "array",
+        "title": "Hero Videos (Multiple)"
+      },
+      {
+        "description": "Extended video shown in modal",
+        "name": "fullVideo",
+        "type": "cloudinary.asset",
+        "title": "Full Video (Watch in Full)"
+      },
+      {
+        "initialValue": true,
+        "name": "showWatchButton",
+        "type": "boolean"
+      },
+      {
+        "description": "Short tagline for the project",
+        "name": "mainline",
+        "type": "string"
+      },
+      {
+        "description": "Main content paragraphs with rich text support",
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "contentParagraphs",
+        "type": "array"
+      },
+      {
+        "description": "Primary project images",
+        "of": [
+          {
+            "type": "cloudinary.asset"
+          }
+        ],
+        "name": "mainImages",
+        "type": "array"
+      },
+      {
+        "description": "Secondary/supporting images",
+        "of": [
+          {
+            "type": "cloudinary.asset"
+          }
+        ],
+        "name": "subImages",
+        "type": "array"
+      },
+      {
+        "description": "Client/brand logo",
+        "name": "brandLogo",
+        "type": "cloudinary.asset"
+      },
+      {
+        "description": "Image shown on the /work page grid",
+        "name": "workPageImage",
+        "type": "cloudinary.asset"
+      },
+      {
+        "name": "workPageSubtitle",
+        "type": "string"
+      },
+      {
+        "description": "Lower numbers appear first on the work page",
+        "name": "sortOrder",
+        "type": "number"
+      }
+    ],
+    "name": "project",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "clientName",
+        "type": "string"
+      },
+      {
+        "name": "logo",
+        "type": "cloudinary.asset"
+      },
+      {
+        "description": "Old field - use Logo instead",
+        "name": "logoUrl",
+        "type": "string",
+        "title": "Logo URL (Legacy)"
+      },
+      {
+        "name": "displayOrder",
+        "type": "number"
+      },
+      {
+        "name": "isActive",
+        "type": "boolean"
+      }
+    ],
+    "name": "clientLogo",
+    "type": "document"
+  },
+  {
+    "description": "Slides for the fullscreen video slider on the home page",
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Title shown over the video (e.g. \"Hardee's\", \"Jean Paul Gaultier\")",
+        "name": "displayTitle",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Autoplay video shown in the center of the slide",
+        "name": "video",
+        "type": "cloudinary.asset",
+        "title": "Slide Video"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Blurred background image behind the video",
+        "name": "backgroundImage",
+        "type": "cloudinary.asset"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "URL path for the \"View Project\" button (e.g. /work/projects/rizzlerHardees)",
+        "name": "projectLink",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Default"
+            },
+            {
+              "title": "Smaller (for long names)",
+              "value": "slide-jeanpaul"
+            }
+          ]
+        },
+        "description": "Controls title sizing — use for long names like Jean Paul Gaultier",
+        "name": "titleClass",
+        "type": "string",
+        "title": "Title Style"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Order in the slider (1 = first)",
+        "name": "displayOrder",
+        "type": "number"
+      },
+      {
+        "initialValue": true,
+        "description": "Show this slide",
+        "name": "isActive",
+        "type": "boolean",
+        "title": "Active"
+      }
+    ],
+    "name": "homeSlider",
+    "type": "document"
+  }
+]
