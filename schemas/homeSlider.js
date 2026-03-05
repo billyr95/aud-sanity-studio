@@ -1,4 +1,4 @@
-// src/sanity/schemaTypes/homeSlider.js
+// schemas/homeSlider.js
 
 import { defineField, defineType } from 'sanity';
 
@@ -6,35 +6,33 @@ export default defineType({
   name: 'homeSlider',
   title: 'Home Slider',
   type: 'document',
-  description: 'Slides for the fullscreen video slider on the home page',
+  description: 'Controls which projects appear in the home page slider and in what order',
   fields: [
     defineField({
-      name: 'displayTitle',
-      title: 'Display Title',
-      type: 'string',
-      description: "Title shown over the video (e.g. \"Hardee's\", \"Jean Paul Gaultier\")",
+      name: 'project',
+      title: 'Project',
+      type: 'reference',
+      to: [{ type: 'project' }],
+      description: 'Select the project to feature in this slide',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'displayTitle',
+      title: 'Display Title Override',
+      type: 'string',
+      description: 'Optional: override the project title shown on the slide (leave blank to use project title)',
     }),
     defineField({
       name: 'video',
-      title: 'Slide Video',
+      title: 'Slide Video Override',
       type: 'cloudinary.asset',
-      description: 'Autoplay video shown in the center of the slide',
-      validation: (Rule) => Rule.required(),
+      description: 'Optional: override the video shown in the slider (leave blank to use project hero video)',
     }),
     defineField({
       name: 'backgroundImage',
-      title: 'Background Image',
+      title: 'Background Image Override',
       type: 'cloudinary.asset',
-      description: 'Blurred background image behind the video',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'projectLink',
-      title: 'Project Link',
-      type: 'string',
-      description: 'URL path for the "View Project" button (e.g. /work/projects/rizzlerHardees)',
-      validation: (Rule) => Rule.required(),
+      description: 'Optional: override the blurred background image (leave blank to use project background)',
     }),
     defineField({
       name: 'titleClass',
@@ -67,11 +65,12 @@ export default defineType({
   preview: {
     select: {
       title: 'displayTitle',
+      projectTitle: 'project.title',
       order: 'displayOrder',
     },
-    prepare({ title, order }) {
+    prepare({ title, projectTitle, order }) {
       return {
-        title,
+        title: title || projectTitle || 'Untitled',
         subtitle: `Slide ${order}`,
       };
     },
