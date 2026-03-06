@@ -1,15 +1,15 @@
-// src/sanity/schemaTypes/index.js
+// schemas/index.js
 
 import project from './project';
 import clientLogo from './clientLogo';
-import siteSettings from './siteSettings';
 import homeSlider from './homeSlider';
+import aboutPage from './aboutPage';
+import contactSection from './contactSection';
 
-export const schema = {
-  types: [
-    project,
-    clientLogo,
-    siteSettings,
-    homeSlider,
-  ],
-};
+export const schemaTypes = [
+  project,
+  clientLogo,
+  homeSlider,
+  aboutPage,
+  contactSection,
+];
